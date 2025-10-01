@@ -4,8 +4,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import { SplitText } from "@/components/ui/split-text";
 import { motion } from "framer-motion";
 import { Code2, GraduationCap, Target, Users } from "lucide-react";
-import { Dialog, DialogContent } from "../ui/dialog";
-import { DialogTrigger } from "@radix-ui/react-dialog";
+import { Dialog, DialogContent,DialogTrigger } from "../ui/dialog";
+
 
 export function AboutSection() {
   const achievements = [
