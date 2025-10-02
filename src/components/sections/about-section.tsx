@@ -1,41 +1,16 @@
 "use client";
 
-import { Card, CardContent } from "@/components/ui/card";
 import { SplitText } from "@/components/ui/split-text";
 import { motion } from "framer-motion";
-import { Code2, GraduationCap, Target, Users } from "lucide-react";
-import { Dialog, DialogContent,DialogTrigger } from "../ui/dialog";
-
+import { AchievementCard } from "./about/AchievementCard";
+import { achievements, dialogAchievements } from "./about/data";
 
 export function AboutSection() {
-  const achievements = [
-    {
-      icon: GraduationCap,
-      title: "Formação",
-      description: "Cursando Ciência da Computação",
-    },
-    {
-      icon: Code2,
-      title: "Desenvolvimento",
-      description: "Experiência em projetos web e mobile",
-    },
-    {
-      icon: Target,
-      title: "Foco",
-      description: "Sempre buscando aprender novas tecnologias",
-    },
-    {
-      icon: Users,
-      title: "Colaboração",
-      description: "Trabalho bem em equipe e projetos colaborativos",
-    },
-  ];
-
   return (
     <section
       id="about"
       className="py-20 bg-slate-950 relative tech-pattern overflow-hidden">
-      <div className="container mx-auto px-6">
+      <div className="container mx-auto px-6 ">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -55,7 +30,7 @@ export function AboutSection() {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}>
-            <div className="space-y-6">
+            <div className="space-y-10 mb-2">
               <p className="text-lg text-slate-300 leading-relaxed">
                 Sou um estudante apaixonado por tecnologia, sempre em busca de
                 novos conhecimentos e desafios. Durante minha jornada acadêmica
@@ -89,35 +64,12 @@ export function AboutSection() {
             viewport={{ once: true }}
             className="grid grid-cols-2 gap-4">
             {achievements.map((achievement, index) => (
-              <motion.div
+              <AchievementCard
                 key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                viewport={{ once: true }}>
-                <Dialog>
-                  <DialogTrigger asChild>
-                    <Card className="glass-card hover:border-blue-500/50 transition-all duration-300 h-full tech-hover group">
-                      <CardContent className="p-6 text-center relative">
-                        <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br from-blue-500/20 to-purple-500/20 flex items-center justify-center group-hover:from-blue-500/30 group-hover:to-purple-500/30 transition-all duration-300">
-                          <achievement.icon className="h-8 w-8 text-blue-400 group-hover:text-blue-300" />
-                        </div>
-                        <h3 className="text-white font-semibold mb-2 group-hover:text-blue-100">
-                          {achievement.title}
-                        </h3>
-                        <p className="text-slate-400 text-sm group-hover:text-slate-300">
-                          {achievement.description}
-                        </p>
-                      </CardContent>
-                    </Card>
-                  </DialogTrigger>
-                  <DialogContent className="backdrop-blur-xl opacity-1 min-w-50 min-h-50">
-                    <p>
-                      {achievement.title} - {achievement.description}
-                    </p>
-                  </DialogContent>
-                </Dialog>
-              </motion.div>
+                achievement={achievement}
+                index={index}
+                dialogData={dialogAchievements}
+              />
             ))}
           </motion.div>
         </div>
